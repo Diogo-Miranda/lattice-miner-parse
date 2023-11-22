@@ -54,15 +54,15 @@ func main() {
 func buildLatticeMinerInput(validContexts map[string]map[string]interface{}) *LatticeMinerInput {
 	settings := settings()
 	return &LatticeMinerInput{
-		Name: settings["name"].(string),
-		Objects: buildObjects(validContexts),
+		Name:       settings["name"].(string),
+		Objects:    buildObjects(validContexts),
 		Attributes: buildAttributes(validContexts, settings),
 		Conditions: buildConditions(validContexts, settings),
-		Relations: buildRelations(validContexts),
+		Relations:  buildRelations(validContexts),
 	}
 }
 
-func buildRelations(validContexts map[string]map[string]interface{}) [][][]string{
+func buildRelations(validContexts map[string]map[string]interface{}) [][][]string {
 	relations := [][][]string{}
 	for _, context := range validContexts {
 		relationObject := [][]string{}
@@ -94,22 +94,22 @@ func getRelation(value string, wave int) string {
 	if value == "True" {
 		switch wave {
 		case 0:
-			r = "t0"
+			r = "A"
 		case 1:
-			r = "t1"
+			r = "B"
 		case 2:
-			r = "t2"
+			r = "C"
 		}
-	} 
+	}
 
 	return r
 }
 
-func buildConditions(validContexts map[string]map[string]interface{}, settings map[string]interface{}) []string{
+func buildConditions(validContexts map[string]map[string]interface{}, settings map[string]interface{}) []string {
 	return settings["waves"].([]string)
 }
 
-func buildAttributes(validContexts map[string]map[string]interface{}, settings map[string]interface{}) []string{
+func buildAttributes(validContexts map[string]map[string]interface{}, settings map[string]interface{}) []string {
 	return settings["attrs"].([]string)
 }
 
@@ -123,10 +123,10 @@ func buildObjects(validContexts map[string]map[string]interface{}) []string {
 
 func settings() map[string]interface{} {
 	return map[string]interface{}{
-		"name": "fdtable",
+		"name":    "fdtable",
 		"noWaves": 3,
-		"noAttr": 19,
-		"attrs": []string{"HADS1", "HADS2", "HADS3", "HADS4", "HADS6", "HADS9", "HADS11", "HADS12", "HADS14", "SOMS1", "SOMS2", "SOMS3", "SOMS4", "SOMS8", "SOMS13", "SOMS14", "SOMS29", "SOMS30", "SOMS54"},
-		"waves": []string{"t0", "t1", "t2"},
+		"noAttr":  19,
+		"attrs":   []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s"},
+		"waves":   []string{"A", "B", "C"},
 	}
 }
